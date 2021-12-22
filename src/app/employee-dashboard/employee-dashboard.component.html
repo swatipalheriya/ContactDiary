@@ -1,0 +1,117 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <h1>Contact-Diary</h1>
+      <!-- <form class="d-flex"> -->
+      <button type="button" (click)="clickAddEmployee()" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Add Employee
+      </button>
+      <!-- </form> -->
+    </div>
+  </nav>
+
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Employee Id</th>
+        <th scope="col">Employee First Name</th>
+        <th scope="col">Employee Last Name</th>
+        <th scope="col">Employee email</th>
+        <th scope="col">Employee Contact No</th>
+        <th scope="col">Employee Image</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+      <td>1</td>
+      <td>sss</td>
+      <td>kkk</td>
+      <td>sere</td>
+      <td>0909</td>
+      <td></td>
+      <td>
+        <button class="btn btn-primary">Edit</button>&nbsp;
+        <button class="btn btn-danger">Delete</button>
+      </td>
+    </tr> -->
+      <tr *ngFor="let row of employeeData">
+        <td>{{row.firstname}} </td>
+        <td>{{row.lastname}} </td>
+        <td>{{row.email}} </td>
+        <td>{{row.contact}} </td>
+        <td>{{row.imagepath}}</td>
+        <td>
+          <button (click)="onEdit(row)" class="btn btn-info" type="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Edit</button>&nbsp;
+          <button (click)="deleteEmployee(row)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" value="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="formValue">
+                <div class="mb-3 row">
+                  <label for="firstname" class="col-sm-4 col-form-label">Employee First Name</label>&nbsp;
+                  <input type="text" formControlName="firstname" class="form-control" id="firstname">
+                </div>
+                <div class="mb-3 row">
+                  <label for="lastname" class="col-sm-4 col-form-label">Employee Last Name</label>&nbsp;
+                  <input type="text" formControlName="lastname" class="form-control" id="lastname">
+                </div>
+                <div class="mb-3 row">
+                  <label for="email" class="col-sm-4 col-form-label">Employee Email</label>&nbsp;
+                  <input type="text" formControlName="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3 row">
+                  <label for="contact" class="col-sm-4 col-form-label">Employee Contact</label>&nbsp;
+                  <input type="text" formControlName="contact" class="form-control" id="contact">
+                </div>
+                <div class="mb-3 xy-2">
+                  <label for="formFile" class="form-label">Default file</label>&nbsp;
+                  <!-- <img [src]="imagepath" height="200"> -->
+                  <input class="form-control" type="file" (change)="uploadFile($event)" id="formFile"
+                    formControlName="formFile" height="100px" accept="/image" class="imagecontainer" />
+                  <!-- <div [innerHTML]="uploadError" class="error"></div> -->
+                  <br>
+                  <img [src]="imagepath" width="100px">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" *ngIf="showadd" class="btn btn-primary" (click)="postEmployeeDetails()">Add</button>
+              <button type="button" *ngIf="showupdate" class="btn btn-primary"
+                (click)="updateEmployeeDetails()">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  const container = document.getElementById("testModal");
+  const modal = new bootstrap.Modal(container);
+
+  document.getElementById("btnShow").addEventListener("click", function () {
+    modal.show();
+  });
+  document.getElementById("btnSave").addEventListener("click", function () {
+    modal.hide();
+  });
+</script> -->

@@ -1,0 +1,9 @@
+{
+    "posts": [
+      { "id": 1, "firstname": "json-server", "lastname": "typicode" ,"emai":"sss","contact":"1111","formfile":"" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }
